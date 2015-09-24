@@ -1,0 +1,19 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: "Arial";
+}
+
+nav {
+	background-color: #2164A1;
+	padding: 2px;
+	text-align:center; 
+}
+
+nav a {
+	color: #FFF;
+	font-weight: bold;
+	text-decoration: none;
+	margin: 0px 3% 0px 3%;
+	font-size: 120%;
+}
