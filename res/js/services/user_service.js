@@ -4,7 +4,13 @@ app.service('UserService', function($rootScope, $http){
             return ($rootScope._user);
         },
         sign_in: function(login, pass) {
-            $http.post('app/user.php').then(function(response){
+            $http.post({
+                'url': 'app/user.php',
+                'data': {
+                    'login': login,
+                    'pass': pass
+                }
+            }).then(function(response){
                 if (response.data) {
                     $rootScope._user = response.data;
                     alert('connected');

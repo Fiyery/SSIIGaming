@@ -1,4 +1,24 @@
 <?php
+require('app/lib/ClassLoader.class.php');
+$class = new ClassLoader(array('app/lib', 'app/model'), 'class.php');
+$config = json_decode(file_get_contents('app/config.json')); 
+$base = new Base($config->base->engine, $config->base->host, $config->base->name, $config->base->user, $config->base->pass);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $root_url = str_replace($_SERVER['DOCUMENT_ROOT'], 'http://'.$_SERVER['SERVER_NAME'].'/', str_replace('\\', '/', __DIR__)).'/';
 ?>
 
@@ -24,7 +44,7 @@ $root_url = str_replace($_SERVER['DOCUMENT_ROOT'], 'http://'.$_SERVER['SERVER_NA
 		<div id='notification_bloc'>
 			<div ng-repeat='msg in _msg' class='notification {{msg.type}}'>
 				{{msg.value}}
-				<div class='remove' ng-click='remove_msg(msg.id)'>X</div>
+				<div class='remove' ng-click='remove_msg(msg.id)'>&times;</div>
 			</div>
 		</div>
 	</header>

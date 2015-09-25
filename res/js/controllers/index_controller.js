@@ -1,4 +1,4 @@
-app.controller('IndexController', function($scope, $rootScope, NotificationService){
+app.controller('IndexController', function($scope, $rootScope, NotificationService, UserService){
 	$rootScope.set_title("Angular JS - Index");
 
 	NotificationService.send("Welcome on AngularJS Application !!", 'info', 'welcome_msg1');
@@ -40,6 +40,13 @@ app.controller('IndexController', function($scope, $rootScope, NotificationServi
 			};
 			NotificationService.remove('pass_error');
 		}
+
+
+
+
+
+
+
 		return true;
 	}
 });

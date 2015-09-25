@@ -12,16 +12,16 @@ angular.module('application').run(function($rootScope, NotificationService) {
   });
 
 app.config(['$routeProvider', function($routeProvider) {
-	$routeProvider.
-		when('/', {
+	$routeProvider
+		.when('/', {
 			templateUrl: 'res/views/index.html',
 			controller: 'IndexController'
-		}).
-		when('/user', {
+		})
+		.when('/user', {
 			templateUrl: 'res/views/user.html',
 			controller: 'UserController'
-		}).
-		otherwise({
+		})
+		.otherwise({
     		redirectTo: '/'
    		});
 }]);

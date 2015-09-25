@@ -21,7 +21,7 @@ nav a {
 }
 
 #content {
-	padding: 30px 5px 10px 5px;
+	padding: 10px 5px 10px 5px;
 	text-align: center;
 }
 
@@ -47,11 +47,12 @@ h1 {
 
 #notification_bloc {
 	font-size: 80%;
-	margin: 10px 0px 5px 0px;
+	margin: 5px 0px 5px 0px;
+	min-height: 45px;
 }
 
 #notification_bloc .notification {
-	padding: 1px 5px 1px 5px;
+	padding: 2px 5px 0px 5px;
 	text-align: center;
 }
 
@@ -78,4 +79,6 @@ h1 {
 #notification_bloc .notification .remove {
 	float: right;
 	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
 }
