@@ -2,6 +2,8 @@
 	margin: 0px;
 	padding: 0px;
 	font-family: "Arial";
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 nav {
@@ -16,4 +18,25 @@ nav a {
 	text-decoration: none;
 	margin: 0px 3% 0px 3%;
 	font-size: 120%;
+}
+
+#content {
+	padding: 10px 5px 10px 5px;
+	text-align: center;
+}
+
+button, input[type="submit"] {
+	background-color: #2164A1;
+	color: #FFF;
+	border: 1px #2164A1 outset;
+	border-radius: 4px;
+	font-weight: bold;
+	padding: 2px 4px;
+	margin: 0px 3px 0px 3px;
+	cursor: pointer;
+}
+
+h1 {
+	border-bottom: 1px solid #39A9CB;
+	color: #2164A1;
 }
