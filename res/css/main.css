@@ -14,15 +14,19 @@ nav {
 
 nav a {
 	color: #FFF;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	text-decoration: none;
 	margin: 0px 3% 0px 3%;
-	font-size: 120%;
+	font-size: 110%;
 }
 
 #content {
-	padding: 10px 5px 10px 5px;
+	padding: 30px 5px 10px 5px;
 	text-align: center;
+}
+
+input {
+	padding: 3px;
 }
 
 button, input[type="submit"] {
@@ -39,4 +43,39 @@ button, input[type="submit"] {
 h1 {
 	border-bottom: 1px solid #39A9CB;
 	color: #2164A1;
+}
+
+#notification_bloc {
+	font-size: 80%;
+	margin: 10px 0px 5px 0px;
+}
+
+#notification_bloc .notification {
+	padding: 1px 5px 1px 5px;
+	text-align: center;
+}
+
+#notification_bloc .notification.info {
+	background-color: #CCE3F9;
+	color: blue;
+}
+
+#notification_bloc .notification.error {
+	background-color: #F9CCCC;
+	color: red;
+}
+
+#notification_bloc .notification.warning {
+	background-color: #F9E7CC;
+	color: #FE9900;
+}
+
+#notification_bloc .notification.success {
+	background-color: #CCF9CC;
+	color: green;
+}
+
+#notification_bloc .notification .remove {
+	float: right;
+	cursor: pointer;
 }

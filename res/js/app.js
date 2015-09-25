@@ -2,10 +2,12 @@
 
 var app = angular.module('application', ['ngRoute']);
 
-angular.module('application')
-  .run(function($rootScope) {
+angular.module('application').run(function($rootScope, NotificationService) {
     $rootScope.set_title = function(title) {
     	this.title = title;
+    };
+    $rootScope.remove_msg = function(id) {
+    	NotificationService.remove(id);
     };
   });
 
