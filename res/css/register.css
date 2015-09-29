@@ -1,0 +1,19 @@
+#form_registrer {
+	width: 400px;
+	margin: auto;
+}
+
+#form_registrer label {
+	float: left;
+	clear: left;
+	width: 150px;
+	text-align: left;
+	font-size: 90%;
+	margin: 8px;
+}
+
+#form_registrer input:not([type='submit']) {
+	float: left;
+	margin: 5px;
+	width: 200px;
+}

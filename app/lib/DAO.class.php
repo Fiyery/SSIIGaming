@@ -3,7 +3,6 @@ class DAO
 {
 	private static $_base;
 
-
 	public function __construct(array $properties = [])
 	{
 		foreach ($properties as $name => $value)
@@ -39,7 +38,7 @@ class DAO
 		}
 		$result = self::$_base->prepare($req);
 		$result->execute($values);
-		$list = $result->fetchAll();
+		$list = $result->fetchAll(PDO::FETCH_ASSOC);
 		$objects = [];
 		foreach ($list as $l)
 		{
@@ -54,8 +53,7 @@ class DAO
 		$fields = array_values(get_object_vars($this));
 		$req = 'REPLACE '.$table.' VALUES ('.implode(',', array_fill(0, count($fields), '?')).')';
 		$result = self::$_base->prepare($req);
-		$result->execute($fields);
+		return $result->execute($fields);
 	}
 }
-
 ?>

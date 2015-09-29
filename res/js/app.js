@@ -2,14 +2,36 @@
 
 var app = angular.module('application', ['ngRoute']);
 
-angular.module('application').run(function($rootScope, NotificationService) {
+angular.module('application').run(function($rootScope, NotificationService, UserService) {
     $rootScope.set_title = function(title) {
     	this.title = title;
     };
     $rootScope.remove_msg = function(id) {
     	NotificationService.remove(id);
     };
-  });
+    $rootScope.is_connected = function(){
+    	return UserService.is_connected();
+    };
+    $rootScope.get_user = function(){
+    	return UserService.get_user();
+    };
+});
+
+angular.module('application').run(function($rootScope, $location, NotificationService, UserService) {
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+    	if (next.$$route) {
+			if (UserService.is_connected() == false && next.$$route.originalPath != '/' && next.$$route.originalPath != '/register') {
+	           	$location.url("/");
+				NotificationService.send("You must be logged to access this page", 'warning', 'access_control');
+	        } else {
+	        	if (UserService.is_connected() && (next.$$route.originalPath == '/' || next.$$route.originalPath == '/register')) {
+					$location.url("/consultant");
+					NotificationService.send("You must be logged to access this page", 'warning', 'access_control');
+	        	}
+	        }
+    	}
+    });
+});
 
 app.config(['$routeProvider', function($routeProvider) {
 	$routeProvider
@@ -17,19 +39,22 @@ app.config(['$routeProvider', function($routeProvider) {
 			templateUrl: 'res/views/index.html',
 			controller: 'IndexController'
 		})
-		.when('/user', {
-			templateUrl: 'res/views/user.html',
-			controller: 'UserController'
+		.when('/register', {
+			templateUrl: 'res/views/register.html',
+			controller: 'RegisterController'
+		})
+		.when('/consultant', {
+			templateUrl: 'res/views/consultant.html',
+			controller: 'ConsultantController'
+		})
+		.when('/sign-out', {
+			templateUrl: 'res/views/consultant.html',
+			controller: 'SignOutController'
 		})
 		.otherwise({
     		redirectTo: '/'
    		});
 }]);
-
-
-var main_controller = app.controller('MainController', function($scope){
-	
-});
 
 var Core = {
 	'root': function(){

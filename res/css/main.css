@@ -10,14 +10,23 @@ nav {
 	background-color: #2164A1;
 	padding: 2px;
 	text-align:center; 
+	position: relative;
 }
 
-nav a {
+nav a.link {
 	color: #FFF;
-	/*font-weight: bold;*/
 	text-decoration: none;
 	margin: 0px 3% 0px 3%;
 	font-size: 110%;
+}
+
+nav div {
+	position: absolute;
+	font-size: 80%;
+	padding-top:2px;
+	color: #FFF;
+	top: 0px;
+	right: 5px;
 }
 
 #content {
