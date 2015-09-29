@@ -1,5 +1,5 @@
-<form method='post' ng-submit=''>
-	<input type='text' placeholder='Login' ng-model='login'/>
-	<input type='text' placeholder='Password' ng-model='pass'/>
-	<input type='submit' value='Sign in'/><button>Subscribe</button>
+<form method='post' ng-submit='submit()'>
+	<input type='text' placeholder='Login' ng-model='login' ng-style="login_style"/>
+	<input type='password' placeholder='Password' ng-model='pass' ng-style="pass_style"//>
+	<input type='submit' value='Sign in'/><a href='#register'><button>Register</button></a>
 </form>
