@@ -4,7 +4,6 @@ $class = new ClassLoader(array('../lib', '../model'), 'class.php');
 $config = json_decode(file_get_contents('../config.json')); 
 $base = new Base($config->base->engine, $config->base->host, $config->base->name, $config->base->user, $config->base->pass);
 DAO::set_base($base); 
-
 $data = file_get_contents("php://input");
 $data = json_decode($data, true);
 

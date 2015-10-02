@@ -26,7 +26,7 @@ angular.module('application').run(function($rootScope, $location, NotificationSe
 	        } else {
 	        	if (UserService.is_connected() && (next.$$route.originalPath == '/' || next.$$route.originalPath == '/register')) {
 					$location.url("/consultant");
-					NotificationService.send("You must be logged to access this page", 'warning', 'access_control');
+					NotificationService.send("You are already logged in", 'warning', 'access_control');
 	        	}
 	        }
     	}

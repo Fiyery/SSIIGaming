@@ -60,11 +60,34 @@ class Recruitment extends Event
 
 	protected function _handle() 
 	{
-		$d = new Departure($this->_event_manager);
-		$d->set_id($this->_id++);
-		mt_srand();
-		$d->set_frequency(mt_rand($this->_min_departure_frequency, $this->_max_departure_frequency));
-		$this->_event_manager->add($d);
+		var_dump("Recruit !");
+        // Creation of consultant.
+        $max = $this->_event_manager->get_config()->entity->max_consultant_begin_wage;
+        $min = $this->_event_manager->get_config()->entity->min_consultant_begin_wage;
+        $f = fopen("../../data/name.txt", "r");
+        $name = [];
+        while ($data = fgetcsv($f, 0, "\t")) 
+        {
+            if (stripos($data[2], $this->_event_manager->get_config()->app->lang) !== FALSE) 
+            {
+                $name[] = $data[0];
+            }
+        }
+        $name = ucfirst($name[array_rand($name)]);
+        if (substr($name, 0, 1) == 'é') 
+        {
+            $name = 'E'.substr($name, 1);
+        }
+        $consultant = Consultant::generate($id, $name, $min, $max);
+        $consultant->save();
+
+        // Add departure event for this consultant.
+        $d = new Departure($this->_event_manager);
+        $d->set_id($this->_id++);
+        mt_srand();
+        $d->set_frequency(mt_rand($this->_min_departure_frequency, $this->_max_departure_frequency));
+        $this->_event_manager->add($d);
 	}
 }
 ?>
+

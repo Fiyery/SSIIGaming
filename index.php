@@ -1,12 +1,18 @@
 <?php
-
 require('app/lib/ClassLoader.class.php');
-$class = new ClassLoader(array('app/lib', 'app/model'), 'class.php');
+$class = new ClassLoader(array('app/lib', 'app/model', 'app/util'), 'class.php');
 $config = json_decode(file_get_contents('app/config.json')); 
 $base = new Base($config->base->engine, $config->base->host, $config->base->name, $config->base->user, $config->base->pass);
 DAO::set_base($base);
 $root_url = str_replace($_SERVER['DOCUMENT_ROOT'], 'http://'.$_SERVER['SERVER_NAME'].'/', str_replace('\\', '/', __DIR__)).'/';
 $root_url .= '#/';
+
+
+$c = Consultant::find();
+$c[0]->remove();
+
+
+
 ?>
 
 <html ng-app='application'>
@@ -25,6 +31,7 @@ $root_url .= '#/';
 	<script type='text/javascript' src='res/js/angular.min.js'></script> 
 	<script type='text/javascript' src="res/js/angular-route.min.js"></script>
 	<script type='text/javascript' src='res/js/app.js'></script> 
+
 <?php 
 	// JS file Loading.
 	$files = array_diff(scandir('res/js/services/'), array('..', '.'));
@@ -33,12 +40,19 @@ $root_url .= '#/';
 		echo "<script type='text/javascript' src='res/js/services/".$f."'></script>";
 	}
 
+	$files = array_diff(scandir('res/js/classes/'), array('..', '.'));
+	foreach ($files as $f)
+	{
+		echo "<script type='text/javascript' src='res/js/classes/".$f."'></script>";
+	}
+
 	$files = array_diff(scandir('res/js/controllers/'), array('..', '.'));
 	foreach ($files as $f)
 	{
 		echo "<script type='text/javascript' src='res/js/controllers/".$f."'></script>";
 	}
 ?>
+
 </head>
 <body >
 	<header>
@@ -50,6 +64,7 @@ $root_url .= '#/';
 				<a href='<?php echo $root_url; ?>sign-out'><button>Sign out</button></a>
 			</div>
 		</nav>
+
 		<div id='notification_bloc'>
 			<div ng-repeat='msg in _msg' class='notification {{msg.type}}'>
 				{{msg.value}}
@@ -57,10 +72,10 @@ $root_url .= '#/';
 			</div>
 		</div>
 	</header>
+
 	<div id='content' ng-view></div>
 
-	<footer>
-	</footer>
+	<footer></footer>
 </body>
 </html>
 

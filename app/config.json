@@ -1,4 +1,8 @@
 {
+	"app" : {
+		"lang" : "french"
+	},
+
 	"base": {
 		"engine": "mysql",	
 		"host": "localhost",
@@ -6,5 +10,16 @@
 		"name": "ssii_project",
 		"user": "root",
 		"pass": ""
+	},
+
+	"event": {
+		"frequency_recruitement" : 		50,
+		"min_frequency_departure" :		0.1,
+		"max_frequency_departure" :		10
+	},
+
+	"entity": {
+		"min_consultant_begin_wage": 		30000,
+		"max_consultant_begin_wage":		38000
 	}
 }

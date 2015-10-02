@@ -1,4 +1,7 @@
 <?php
+/**
+ * Class handles and load events.
+ */
 class EventManager
 {
 	/**
@@ -7,9 +10,21 @@ class EventManager
 	 */
 	private $_events = [];
 
-	public function __construct()
-	{
+    /**
+     * List of events occured.
+     * @var array
+     */
+    private $_occured = [];
 
+    /**
+     * List the site parameters.
+     * @var Object
+     */
+    private $_config;
+
+	public function __construct($config)
+	{
+        $this->_config = $config;
 	}
 
     /**
@@ -19,6 +34,15 @@ class EventManager
     public function get()
     {
         return $this->_events;
+    }
+
+    /**
+     * Gets the List the site parameters.
+     * @return Object
+     */
+    public function get_config()
+    {
+        return $this->_config;
     }
 
     /**
@@ -47,8 +71,36 @@ class EventManager
     {
         foreach ($this->_events as $e)
         {
+            $this->_occured[] = $e;
             $e->occur();
         }
+    }
+
+    /**
+     * Load all event.
+     * @param Base $base Instance of database.
+     */
+    public function load(Base $base) 
+    {
+        // Recruitment event.
+        $r = new Recruitment($this);
+        $r->set_frequency($this->_config->event->frequency_recruitement);
+        $r->set_max_departure_frequency($this->_config->event->max_frequency_departure);
+        $r->set_min_departure_frequency($this->_config->event->min_frequency_departure);
+        $r->set_id(Consultant::get_max_id() + 1);
+        $em->add($r);
+
+        // Departure events for existed consultants.
+        $consultant = Consultant::find();
+        foreach ($consultants as $c)
+        {
+            $d = new Departure($this);
+            $d->set_id($c->id);
+            mt_srand();
+            $d->set_frequency(mt_rand($this->_min_departure_frequency, $this->_max_departure_frequency));
+            $this->add($d);
+        }
+        $em->occur();
     }
 }
 ?>

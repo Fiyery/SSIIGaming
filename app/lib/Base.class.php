@@ -1,4 +1,7 @@
 <?php
+/**
+ * Base deliver database access.
+ */
 class Base 
 {
 	private $_connection = NULL;
